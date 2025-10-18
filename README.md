@@ -1,7 +1,8 @@
 Django Expense Tracker
 A simple Django web application for tracking personal expenses with user authentication.
 
-Features
+** Features **
+
 User registration and authentication
 
 Create, read, update, and delete expenses
@@ -16,13 +17,13 @@ Form validation and user feedback messages
 
 Secure user sessions with proper logout functionality
 
-Setup Instructions
+** Setup Instructions **
 Prerequisites
 Python 3.8+
 
 pip (Python package manager)
 
-Installation
+** Installation **
 Download and extract the project files
 
 Navigate to the project directory
@@ -59,7 +60,7 @@ Main application: http://127.0.0.1:8000/
 
 Admin panel: http://127.0.0.1:8000/admin/ (if superuser created)
 
-Steps to Test the Application
+** Steps to Test the Application **
 1. Register a New Account
 Go to http://127.0.0.1:8000/register
 
@@ -152,7 +153,7 @@ Verify that the "Total this month" amount correctly sums all expenses
 
 Add expenses from previous months to ensure they're not included in the current month total
 
-Short Explanation of the Approach
+** Short Explanation of the Approach **
 Architecture
 Backend: Django with SQLite database
 
@@ -193,7 +194,7 @@ ModelForm for expense creation/editing with validation
 
 Custom registration form with password confirmation
 
-Security Features
+** Security Features **
 CSRF protection on all forms
 
 LoginRequiredMixin for protected views
@@ -204,15 +205,13 @@ Secure password handling with validation
 
 Proper session management with logout redirect
 
-Bonus Features Implemented
-✅ User registration system
+** Bonus Features Implemented **
+User registration system
 
-✅ Expense filtering by category and date range
+Expense filtering by category and date range
 
-✅ Monthly total calculation and display
+Monthly total calculation and display
 
-✅ Responsive design with clean CSS
+Responsive design with clean CSS
 
-✅ Form validation and user feedback messages
-
-The application follows Django best practices with a clear separation of concerns, reusable components, and a focus on user experience and data security.
+Form validation and user feedback messages
