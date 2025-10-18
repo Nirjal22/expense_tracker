@@ -1,0 +1,71 @@
+{% extends 'expenses/base.html' %}
+
+{% block content %}
+<h2>My Expenses</h2>
+
+<div class="stats">
+    <h3>Monthly Summary</h3>
+    <p><strong>Total this month:</strong> ${{ monthly_total }}</p>
+</div>
+
+<div class="filters">
+    <h3>Filter Expenses</h3>
+    <form method="get">
+        <div>
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <option value="">All Categories</option>
+                {% for value, label in categories %}
+                    <option value="{{ value }}" {% if request.GET.category == value %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date" value="{{ request.GET.start_date }}">
+        </div>
+        <div>
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" value="{{ request.GET.end_date }}">
+        </div>
+        <div>
+            <button type="submit" class="btn">Apply Filters</button>
+            <a href="{% url 'expense-list' %}" class="btn">Clear Filters</a>
+        </div>
+    </form>
+</div>
+
+<a href="{% url 'expense-create' %}" class="btn btn-success">Add New Expense</a>
+
+{% if expenses %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense.title }}</td>
+                    <td>${{ expense.amount }}</td>
+                    <td>{{ expense.get_category_display }}</td>
+                    <td>{{ expense.date }}</td>
+                    <td>
+                        <a href="{% url 'expense-update' expense.pk %}" class="btn">Edit</a>
+                        <a href="{% url 'expense-delete' expense.pk %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No expenses found. <a href="{% url 'expense-create' %}">Add your first expense!</a></p>
+{% endif %}
+{% endblock %}
